@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "CommonJS", /* Required for 'import {Article_type, Article, Articles_} from './Articles';' */
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "sourceMap": false,
+    "strictNullChecks": true,
+    "target": "ESNext",
+    "strict": true,
+    "resolveJsonModule": true
+  },
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ],
+  "include": [
+    "./src/**/*.ts"
+  ]
+}
