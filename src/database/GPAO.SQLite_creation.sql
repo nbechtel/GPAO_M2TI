@@ -21,7 +21,7 @@ create table Lien_de_nomenclature (
 	quantite_de_composition number not null,
 	constraint Lien_de_nomenclature_pk primary key(compose,composant),
 	constraint Lien_de_nomenclature_fk_1 foreign key(compose) references Article(reference) on delete cascade,
-	constraint Lien_de_nomenclature_fk_2 foreign key(composant) references Article(reference) on delete cascade,
+	constraint Lien_de_nomenclature_fk_2 foreign key(composant) references Article(reference) on delete cascade
 );
 
 create table Remplacement (
@@ -89,11 +89,12 @@ insert into Lien_de_nomenclature values('CD100','CH005',1);
 insert into Lien_de_nomenclature values('CD100','H000',1);
 insert into Lien_de_nomenclature values('CD100','H001',1);
 
-insert into Remplacement select ref(ln1),ref(ln2),sysdate from Lien_de_nomenclature ln1,Lien_de_nomenclature ln2 where
+insert into Remplacement select ref(ln1),ref(ln2),sysdate from Lien_de_nomenclature as ln1,Lien_de_nomenclature as ln2 where
 	ln1.compose = 'CD100' and ln2.compose = 'CD100' and ln1.composant = 'H000' and ln2.composant = 'H001';
 
 insert into Poste_de_charge values(500,450,1,'Rectifieuse',80,1,39,'TH');
 insert into Poste_de_charge values(500,450,0,'Rectifieur',80,1,39,'TH');
-
+/*
 insert into Operation_ select 'ES000',020,ref(machine),ref(main_d_oeuvre),0.5,0.05,0.2,'Rectification' from
-Poste_de_charge machine,Poste_de_charge main_d_oeuvre where machine.designation = 'Rectifieuse' and main_d_oeuvre.designation = 'Rectifieur';
+Poste_de_charge as machine,Poste_de_charge as main_d_oeuvre where machine.designation = 'Rectifieuse' and main_d_oeuvre.designation = 'Rectifieur';
+*/
